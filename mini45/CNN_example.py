@@ -109,17 +109,17 @@ def cnn_model_fn(features, labels, mode):
 
 def main(unused_argv):
     # Load training and eval data
-    fraction_labels = 0.001
 
     mnist = tf.contrib.learn.datasets.load_dataset("mnist")
     train_data = mnist.train.images  # Returns np.array
-    print(len(train_data))
-
     train_labels = np.asarray(mnist.train.labels, dtype=np.int32)
-    nbr_data_points = train_labels.size
-    random_logics = np.random.uniform(size=nbr_data_points) < fraction_labels
-    train_data = train_data[random_logics, :]
-    train_labels = train_labels[random_logics]
+
+    indices = [0,1,2,3,4,5,7,8,13,27]
+    # fraction_labels = 0.001
+    # nbr_data_points = train_labels.size
+    # random_logics = np.random.uniform(size=nbr_data_points) < fraction_labels
+    train_data = train_data[indices,:]
+    train_labels = train_labels[indices]
 
 
     eval_data = mnist.test.images  # Returns np.array
